@@ -4,7 +4,7 @@
 
 This repository contains a **production-style shop scraper** built using **Playwright and TypeScript**, designed to reliably extract structured product data from an e-commerce website.
 
-The project is intentionally framed as a **flagship engineering and quality initiative**, demonstrating how I approach **automation, data accuracy, maintainability, and business impact** when building tools intended to support real teams and real decisions.
+The project is intentionally framed as a **flagship engineering and quality initiative**, demonstrating how I approach **automation, data accuracy, maintainability and business impact** when building tools intended to support real teams and real decisions.
 
 This is not a demo script. It is a foundation that can be evolved into a **business-critical data pipeline**.
 
@@ -78,7 +78,7 @@ Page Objects (Selectors & Actions)
    ↓
 Browser Context (Playwright)
    ↓
-Structured Data Output (CSV / XLSX)
+Structured Data Output (XLSX)
 ```
 
 This structure ensures:
@@ -88,13 +88,13 @@ This structure ensures:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 ├── pages/              # Page Objects encapsulating UI interactions
 ├── tests/              # Scraping and validation flows
 ├── utils/              # Data transformation and helpers
-├── outputs/            # Generated CSV / XLSX files
+├── outputs/            # Generated XLSX files
 ├── playwright.config.ts
 └── README.md
 ```
