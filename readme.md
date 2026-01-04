@@ -12,13 +12,13 @@ This is not a demo script. It is a foundation that can be evolved into a **busin
 
 ##  Business Problem
 
-E-commerce teams frequently need reliable access to product data for:
+E-commerce teams frequently need reliable access to product data for the following.
 - Price monitoring and competitor analysis
 - Assortment tracking and catalogue validation
 - Regression detection after UI or backend changes
 - Feeding downstream analytics, reporting, or decision systems
 
-Manual checks or ad-hoc scripts are:
+Manual checks or ad-hoc scripts are
 - Time-consuming
 - Error-prone
 - Difficult to maintain as websites evolve
