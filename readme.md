@@ -155,31 +155,5 @@ The foundation is intentionally built to support these evolutions.
 
 ---
 
-##  About the Author
 
-I am a **QA Analyst with a strong automation and data focus**, experienced in the following skills and interests.
-- Test automation and quality engineering
-- Playwright, TypeScript, SQL and data validation
-- Designing maintainable systems that balance technical rigor with business value
-
-This project reflects how I approach:
-- Ownership
-- Engineering discipline
-- Long-term impact
-
-It is representative of the standard I aim to bring to future teams and projects.
-
----
-
-## Why This Project Matters
-
-This playwright shop scraper is not just about extracting data.
-
-It demonstrates the following.
-- Systems thinking
-- Clean architecture
-- Business awareness
-- Readiness to own and evolve production-grade tools
-
-It is intentionally positioned as a **flagship project** that shows both my **current capability and future potential**.
 
