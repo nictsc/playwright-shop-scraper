@@ -4,28 +4,45 @@ export class wowProductPage {
   constructor(private page: Page) {}
 
   async goto(url: string) {
-    await this.page.goto(url, { waitUntil: 'commit', timeout: 10000 });
+    try {
+      await this.page.goto(url, { 
+        waitUntil: 'domcontentloaded', 
+        timeout: 10000 
+      });
+      // Wait 1 second after DOM is loaded for rendering content
+      await this.page.waitForTimeout(1000);
+    } catch (error) {
+      // Retry with a more lenient wait condition
+      console.warn(`Navigation failed, retrying with networkidle...`, error);
+      await this.page.goto(url, { 
+        waitUntil: 'networkidle',
+        timeout: 10000
+      });
+      // Wait 1 second after DOM is loaded for rendering content
+      await this.page.waitForTimeout(1000);
+    }
   }
 
   async getProductName(): Promise<string> {
-    const locator = this.page.locator(
-      '.product-title_component_title-container__XGNlk'
-    );
-    await locator.waitFor({ state: 'visible', timeout: 5000 });
-    return (await locator.innerText()).trim();
+    const title = await this.page.title();
+    return title.replace(/\s*\|\s*Woolworths\s*$/, '').trim();
   }
 
   // Tells what locator to use for in-stock or out-of-stock products
   async getPriceAndStock(): Promise<{ price: string; stockStatus: string }> {
     const priceLocator = this.page.locator('#product-price-sr');
+    
+    // Multiple strategies to detect out-of-stock status (ordered by specificity)
     const outOfStockLocator = this.page.locator(
-      '.product-label_component_out-of-stock-with-restock-date__aDXDl'
+      '[class*="out-of-stock"], ' +  // Targets CSS module classes containing "out-of-stock"
+      '[class*="unavailable"], ' +   // Fallback for availability classes
+      ':text-matches("Est. Restock|Out of Stock", "i")'  // Fallback to text content
     );
 
-    // Wait for either price OR out-of-stock label (max 5s)
+    // Wait for either price OR out-of-stock label (max 10s)
     await Promise.race([
-      priceLocator.waitFor({ state: 'visible', timeout: 5000 }).catch(() => null),
-      outOfStockLocator.waitFor({ state: 'visible', timeout: 5000 }).catch(() => null),
+      priceLocator.waitFor({ state: 'visible', timeout: 10000 }).catch(() => null),
+      outOfStockLocator.waitFor({ state: 'visible', timeout: 10000 }).catch(() => null),
     ]);
 
     if (await priceLocator.isVisible()) {

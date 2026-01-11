@@ -36,6 +36,11 @@ export default defineConfig({
     /* Timeout settings while testing */
     navigationTimeout: 30_000,
     actionTimeout: 15_000,
+    /* Add headers to appear as a real browser */
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-AU,en;q=0.9',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    },
   },
 
   /* Configure projects for major browsers */
