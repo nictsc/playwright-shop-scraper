@@ -29,7 +29,7 @@ export class wowProductPage {
   }
 
   // Tells what locator to use for in-stock or out-of-stock products
-  async getPriceAndStock(): Promise<{ price: string; stockStatus: string }> {
+  async getPriceAndStock(): Promise<{ price: string; stockStatus: 'In Stock' | 'Out of Stock' }> {
     const priceLocator = this.page.locator('#product-price-sr');
     
     // Multiple strategies to detect out-of-stock status (ordered by specificity)
@@ -56,6 +56,6 @@ export class wowProductPage {
       return { price: '', stockStatus: 'Out of Stock' };
     }
 
-    return { price: '', stockStatus: 'Unknown' };
+    return { price: '', stockStatus: 'Out of Stock' };
   }
 }

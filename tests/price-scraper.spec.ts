@@ -15,7 +15,12 @@ test('Scrape product prices from spreadsheet', async ({ page }) => {
   await initExcel();
 
   const productPage = new wowProductPage(page);
-  const extractDate = new Date().toISOString().split('T')[0];
+  const extractDate = new Date().toLocaleString('en-AU', {
+    timeZone: 'Australia/Sydney',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).split('/').reverse().join('-');
 
   for (const product of products) {
     await productPage.goto(product.url);

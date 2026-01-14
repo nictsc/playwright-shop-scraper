@@ -4,8 +4,13 @@ import path from 'path';
 
 // ===== File setup =====
 
-// Get today's date (YYYY-MM-DD)
-const today = new Date().toISOString().split('T')[0];
+// Get today's date (YYYY-MM-DD) in Sydney timezone
+const today = new Date().toLocaleString('en-AU', {
+  timeZone: 'Australia/Sydney',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+}).split('/').reverse().join('-');
 
 // Build filename using the date
 const OUTPUT_PATH = path.resolve('results', `${today}-WOW.xlsx`);
@@ -20,7 +25,6 @@ export interface ScrapedProduct {
 
 let workbook: ExcelJS.Workbook;
 let sheet: ExcelJS.Worksheet;
-
 // Initialise workbook (call once before writing rows)
 export async function initExcel() {
   workbook = new ExcelJS.Workbook();
