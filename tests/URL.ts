@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 // WOW product information
-test('test', async ({ page }) => {
+test('wow', async ({ page }) => {
   await page.goto('https://www.woolworths.com.au/shop/productdetails/716852/quorn-pieces-frozen');
   await expect(page.getByRole('heading', { name: 'Quorn Pieces Frozen 300g' })).toBeVisible();
   await page.goto('https://www.woolworths.com.au/shop/productdetails/6050692/made-with-plants-meat-free-bacon');
@@ -39,4 +39,26 @@ test('test', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Olay Regenerist Micro' })).toBeVisible();
   await page.goto('https://www.woolworths.com.au/shop/productdetails/258415/olay-moisturising-lotion-complete-defence-sensitive-spf-30');
   await expect(page.getByRole('heading', { name: 'Olay Moisturising Lotion' })).toBeVisible();
+});
+
+// Myer product information
+test('myr', async ({ page }) => {
+  await page.goto('https://www.myer.com.au/p/fujifilm-mini12-instant-camera-in-clay-white-85366');
+  await expect(page.getByRole('heading', { name: 'Mini12 Instant Camera in Clay' })).toBeVisible();
+  await expect(page.getByRole('paragraph', { name: '$109.65' })).toBeVisible();
+  await page.goto('https://www.myer.com.au/p/scanpan-impact-2-piece-fry-pan-set-in-stainless-stel');
+  await expect(page.getByRole('heading', { name: 'Impact 2 Piece Fry Pan Set in' })).toBeVisible();
+  await expect(page.getByRole('paragraph').filter({ hasText: '$109.00' })).toBeVisible();
+  await page.goto('https://www.myer.com.au/p/philips-2000-series-42l-airfryer-l-in-black-na220-00');
+  await expect(page.getByRole('heading', { name: '2000 Series 4.2L Airfryer L' })).toBeVisible();
+  await expect(page.getByRole('paragraph').filter({ hasText: '$99.00' })).toBeVisible();
+  await page.goto('https://www.myer.com.au/p/bonds-4-pack-logo-light-no-show-socks');
+  await expect(page.getByRole('heading', { name: 'Mens Logo Lightweight No Show' })).toBeVisible();
+  await expect(page.getByRole('paragraph').filter({ hasText: '$19.99' })).toBeVisible();
+  await page.goto('https://www.myer.com.au/p/samsonite-classic-leather-slim-backpack-brown');
+  await expect(page.getByRole('heading', { name: 'Classic Leather Slim Backpack in Cognac Brown' })).toBeVisible();
+  await expect(page.getByRole('paragraph').filter({ hasText: '$179.40' })).toBeVisible();
+  await page.goto('https://www.myer.com.au/p/scanpan-impact-26cm-fry-pan-908154370-1');
+  await expect(page.getByRole('heading', { name: 'Impact Fry Pan 26cm in Stainless Steel' })).toBeVisible();
+  await expect(page.getByRole('paragraph').filter({ hasText: '$64.50' })).toBeVisible();
 });
